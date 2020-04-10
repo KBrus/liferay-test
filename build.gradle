@@ -75,7 +75,7 @@ dependencies {
 	implementation 'javax.portlet:portlet-api:2.0'
 	implementation 'org.quartz-scheduler:quartz:2.1.6'
 	implementation 'rome:rome:1.0'
-	runtimeOnly 'javax.servlet:javax.servlet-api:3.1.0'
+	implementation 'javax.servlet:javax.servlet-api:3.0.1'
 	implementation 'org.slf4j:slf4j-api:1.7.2'
 	implementation 'org.slf4j:slf4j-log4j12:1.7.2'
 	implementation 'org.apache.tika:tika-core:1.3'
