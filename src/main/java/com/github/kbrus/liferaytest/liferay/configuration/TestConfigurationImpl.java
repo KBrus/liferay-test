@@ -1,9 +1,8 @@
-package com.github.kbrus.liferaytestharness.liferay.configuration;
+package com.github.kbrus.liferaytest.liferay.configuration;
 
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.util.StringPool;
-import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package com.github.kbrus.liferaytestharness.liferay.model;
+package com.github.kbrus.liferaytest.liferay.model;
 
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.UserImpl;

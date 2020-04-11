@@ -1,4 +1,4 @@
-package com.github.kbrus.liferaytestharness.liferay.configuration;
+package com.github.kbrus.liferaytest.liferay.configuration;
 
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.ConfigurationFactory;

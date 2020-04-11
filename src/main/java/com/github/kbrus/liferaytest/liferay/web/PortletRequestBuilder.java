@@ -1,6 +1,6 @@
-package com.github.kbrus.liferaytestharness.liferay.web;
+package com.github.kbrus.liferaytest.liferay.web;
 
-import com.github.kbrus.liferaytestharness.liferay.web.portlet.TestRenderRequestImpl;
+import com.github.kbrus.liferaytest.liferay.web.portlet.TestRenderRequestImpl;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.WebKeys;
 

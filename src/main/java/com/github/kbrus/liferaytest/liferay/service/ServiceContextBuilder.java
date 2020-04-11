@@ -1,6 +1,6 @@
-package com.github.kbrus.liferaytestharness.liferay.service;
+package com.github.kbrus.liferaytest.liferay.service;
 
-import com.github.kbrus.liferaytestharness.liferay.web.PortletRequestBuilder;
+import com.github.kbrus.liferaytest.liferay.web.PortletRequestBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;

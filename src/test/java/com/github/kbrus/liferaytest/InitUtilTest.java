@@ -1,4 +1,4 @@
-package com.github.kbrus.liferaytestharness;
+package com.github.kbrus.liferaytest;
 
 import com.liferay.counter.service.CounterLocalService;
 import com.liferay.counter.service.CounterLocalServiceUtil;

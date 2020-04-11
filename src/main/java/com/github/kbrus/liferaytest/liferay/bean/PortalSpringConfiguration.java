@@ -1,4 +1,4 @@
-package com.github.kbrus.liferaytestharness.liferay.bean;
+package com.github.kbrus.liferaytest.liferay.bean;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;

@@ -1,4 +1,4 @@
-package com.github.kbrus.liferaytestharness;
+package com.github.kbrus.liferaytest;
 
 public class InitializationException extends Exception
 {

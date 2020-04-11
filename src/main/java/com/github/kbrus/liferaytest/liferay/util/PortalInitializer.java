@@ -1,9 +1,9 @@
-package com.github.kbrus.liferaytestharness.liferay.util;
+package com.github.kbrus.liferaytest.liferay.util;
 
-import com.github.kbrus.liferaytestharness.InitializationException;
-import com.github.kbrus.liferaytestharness.liferay.bean.PortalBeanLocator;
-import com.github.kbrus.liferaytestharness.liferay.bean.SpringContextBeanLocator;
-import com.github.kbrus.liferaytestharness.liferay.configuration.TestConfigurationFactoryImpl;
+import com.github.kbrus.liferaytest.InitializationException;
+import com.github.kbrus.liferaytest.liferay.bean.PortalBeanLocator;
+import com.github.kbrus.liferaytest.liferay.bean.SpringContextBeanLocator;
+import com.github.kbrus.liferaytest.liferay.configuration.TestConfigurationFactoryImpl;
 import com.liferay.portal.cache.CacheRegistryImpl;
 import com.liferay.portal.cache.key.SimpleCacheKeyGenerator;
 import com.liferay.portal.configuration.ConfigurationImpl;

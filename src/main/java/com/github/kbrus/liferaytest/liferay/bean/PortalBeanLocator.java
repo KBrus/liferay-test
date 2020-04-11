@@ -1,4 +1,4 @@
-package com.github.kbrus.liferaytestharness.liferay.bean;
+package com.github.kbrus.liferaytest.liferay.bean;
 
 import com.liferay.portal.kernel.bean.BeanLocator;
 import com.liferay.portal.kernel.bean.BeanLocatorException;
