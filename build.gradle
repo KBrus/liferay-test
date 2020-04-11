@@ -5,6 +5,12 @@ plugins {
 group 'com.github.kbrus'
 version '1.0-SNAPSHOT'
 
+compileJava {
+	sourceCompatibility "1.8"
+	targetCompatibility "1.8"
+}
+
+
 repositories {
 	// mavenCentral()
 	maven {
@@ -34,12 +40,15 @@ dependencies {
 	implementation 'apache-httpclient:commons-httpclient:3.1'
 	implementation 'commons-io:commons-io:2.1'
 	implementation 'commons-logging:commons-logging:1.1.1'
-	implementation 'org.outerj.daisy:daisydiff:1.2.1-atlassian-hosted' // should be 1.2
+	implementation('org.outerj.daisy:daisydiff:1.2.1-atlassian-hosted') { // should be 1.2
+		exclude group: 'xml-apis', module: 'xml-apis'
+	}
 	implementation('easyconf:easyconf:0.9.5') {
 		exclude group: 'javax.servlet', module: 'servlet-api'
 		exclude group: 'xdoclet', module: 'xdoclet-web-module'
 		exclude group: 'xpp3', module: 'xpp3_min'
 		exclude group: 'xdoclet', module: 'xdoclet'
+		exclude group: 'xml-apis', module: 'xml-apis'
 	}
 	implementation 'net.sf.ehcache:ehcache:2.7.1'
 	implementation 'net.sf.flexjson:flexjson:3.1'
@@ -88,7 +97,6 @@ dependencies {
 	implementation 'xpp3:xpp3_min:1.1.4c'
 
 	implementation 'junit:junit:4.13.2'
-
 	testImplementation 'org.assertj:assertj-core:3.19.0'
 }
 
