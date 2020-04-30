@@ -308,13 +308,13 @@ public class TestHttpServletRequestImpl implements HttpServletRequest
 	@Override
 	public void setAttribute(String name, Object o)
 	{
-
+		attrs.put(name, o);
 	}
 
 	@Override
 	public void removeAttribute(String name)
 	{
-
+		attrs.remove(name);
 	}
 
 	@Override
