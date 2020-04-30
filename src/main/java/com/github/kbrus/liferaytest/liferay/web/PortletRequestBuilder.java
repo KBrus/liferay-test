@@ -1,6 +1,7 @@
 package com.github.kbrus.liferaytest.liferay.web;
 
 import com.github.kbrus.liferaytest.liferay.web.portlet.TestRenderRequestImpl;
+import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.WebKeys;
 
@@ -25,10 +26,16 @@ public abstract class PortletRequestBuilder<T extends PortletRequest>
 		return new ResourceRequestBuilder();
 	}
 
-	private PortletRequestBuilder<T> withUser(User user)
+	public PortletRequestBuilder<T> withUser(User user)
 	{
 		portletRequest.setAttribute(WebKeys.USER, user);
 		portletRequest.setAttribute(WebKeys.COMPANY_ID, user.getCompanyId());
+		return this;
+	}
+
+	public PortletRequestBuilder<T> withPortlet(Portlet portlet)
+	{
+		portletRequest.setAttribute(WebKeys.PORTLET_ID, portlet.getPortletId());
 		return this;
 	}
 
