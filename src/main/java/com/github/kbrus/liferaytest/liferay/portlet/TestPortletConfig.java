@@ -1,12 +1,11 @@
 package com.github.kbrus.liferaytest.liferay.portlet;
 
+import org.apache.commons.lang.NotImplementedException;
+
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
 import javax.xml.namespace.QName;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class TestPortletConfig implements PortletConfig
 {
@@ -37,7 +36,26 @@ public class TestPortletConfig implements PortletConfig
 	@Override
 	public ResourceBundle getResourceBundle(Locale locale)
 	{
-		return null;
+		return new ResourceBundle()
+		{
+			@Override
+			protected Object handleGetObject(String key)
+			{
+				switch (key)
+				{
+					case "javax.portlet.title":
+						return "Test";
+					default:
+						throw new NotImplementedException();
+				}
+			}
+
+			@Override
+			public Enumeration<String> getKeys()
+			{
+				return Collections.emptyEnumeration();
+			}
+		};
 	}
 
 	@Override
