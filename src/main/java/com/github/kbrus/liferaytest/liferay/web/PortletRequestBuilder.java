@@ -3,6 +3,7 @@ package com.github.kbrus.liferaytest.liferay.web;
 import com.github.kbrus.liferaytest.liferay.web.portlet.TestRenderRequestImpl;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.WebKeys;
 
 import javax.portlet.*;
@@ -36,6 +37,12 @@ public abstract class PortletRequestBuilder<T extends PortletRequest>
 	public PortletRequestBuilder<T> withPortlet(Portlet portlet)
 	{
 		portletRequest.setAttribute(WebKeys.PORTLET_ID, portlet.getPortletId());
+		return this;
+	}
+
+	public PortletRequestBuilder<T> withThemeDisplay(ThemeDisplay themeDisplay)
+	{
+		portletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
 		return this;
 	}
 

@@ -1,11 +1,10 @@
 package com.github.kbrus.liferaytest.liferay.web;
 
 import com.github.kbrus.liferaytest.liferay.web.portlet.TestRenderResponseImpl;
+import com.liferay.portal.theme.ThemeDisplay;
 
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletResponse;
-import javax.portlet.RenderResponse;
-import javax.portlet.ResourceResponse;
+import javax.portlet.*;
+import java.lang.reflect.Field;
 
 public abstract class PortletResponseBuilder<T extends PortletResponse>
 {
@@ -24,6 +23,16 @@ public abstract class PortletResponseBuilder<T extends PortletResponse>
 	public static PortletResponseBuilder<ResourceResponse> newResourceResponse()
 	{
 		return new ResourceResponseBuilder();
+	}
+
+	public PortletResponseBuilder<T> withPortletRequest(PortletRequest req)
+			throws ReflectiveOperationException
+	{
+		Field field = portletResponse.getClass().getSuperclass().getDeclaredField("_portletRequestImpl");
+		field.setAccessible(true);
+		field.set(portletResponse, req);
+
+		return this;
 	}
 
 	public T build()
