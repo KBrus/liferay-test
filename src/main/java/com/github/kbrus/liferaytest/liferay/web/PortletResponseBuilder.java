@@ -1,5 +1,6 @@
 package com.github.kbrus.liferaytest.liferay.web;
 
+import com.github.kbrus.liferaytest.liferay.web.portlet.TestActionResponseImpl;
 import com.github.kbrus.liferaytest.liferay.web.portlet.TestRenderResponseImpl;
 import com.liferay.portal.theme.ThemeDisplay;
 
@@ -46,8 +47,18 @@ public abstract class PortletResponseBuilder<T extends PortletResponse>
 
 		private ActionResponseBuilder()
 		{
-			// TODO: TestActionResponseImpl
-			super.portletResponse = actionResponse = null;
+			super.portletResponse = actionResponse = new TestActionResponseImpl();
+		}
+
+		@Override
+		public ActionResponseBuilder withPortletRequest(PortletRequest req)
+				throws ReflectiveOperationException
+		{
+			Field field = super.portletResponse.getClass().getSuperclass().getSuperclass().getDeclaredField("_portletRequestImpl");
+			field.setAccessible(true);
+			field.set(super.portletResponse, req);
+
+			return this;
 		}
 	}
 

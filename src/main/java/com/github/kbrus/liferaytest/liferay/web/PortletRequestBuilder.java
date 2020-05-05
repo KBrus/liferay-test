@@ -1,5 +1,6 @@
 package com.github.kbrus.liferaytest.liferay.web;
 
+import com.github.kbrus.liferaytest.liferay.web.portlet.TestActionRequestImpl;
 import com.github.kbrus.liferaytest.liferay.web.portlet.TestRenderRequestImpl;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
@@ -57,7 +58,7 @@ public abstract class PortletRequestBuilder<T extends PortletRequest>
 
 		private ActionRequestBuilder()
 		{
-			super.portletRequest = actionRequest = null;
+			super.portletRequest = actionRequest = new TestActionRequestImpl();
 		}
 	}
 
