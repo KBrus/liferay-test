@@ -90,3 +90,10 @@ public class NewPortletTest
 	}
 }
 ```
+
+If portal startup is too slow for unit tests, try creating service mocks (with Mockito, for instance)
+and use `ServiceUtil#rewireService` to wire them:
+
+```java
+
+```
