@@ -13,7 +13,8 @@ public class TestRenderResponseImpl extends RenderResponseImpl
 	{
 		response = new TestHttpServletResponseImpl();
 
-		try {
+		try
+		{
 			// set the _response field to the request
 			Field field = this.getClass().getSuperclass().getSuperclass().getDeclaredField("_response");
 			field.setAccessible(true);

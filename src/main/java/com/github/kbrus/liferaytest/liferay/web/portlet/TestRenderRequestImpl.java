@@ -1,7 +1,7 @@
 package com.github.kbrus.liferaytest.liferay.web.portlet;
 
-import com.liferay.portlet.RenderRequestImpl;
 import com.github.kbrus.liferaytest.liferay.web.servlet.TestHttpServletRequestImpl;
+import com.liferay.portlet.RenderRequestImpl;
 
 import java.lang.reflect.Field;
 

@@ -11,10 +11,29 @@ import java.util.*;
 public class TestHttpServletRequestImpl implements HttpServletRequest
 {
 	private final Map<String, Object> attrs;
+	private final Map<String, ArrayList<String>> params;
+	private final Map<String, ArrayList<String>> headers;
+	private HttpSession httpSession;
 
 	public TestHttpServletRequestImpl()
 	{
 		attrs = new HashMap<>();
+		params = new HashMap<>();
+		headers = new HashMap<>();
+	}
+
+	public void setParameter(String name, String value)
+	{
+		if (!params.containsKey(name))
+		{
+			ArrayList<String> values = new ArrayList<>();
+			values.add(value);
+			params.put(name, values);
+		}
+		else
+		{
+			params.get(name).add(value);
+		}
 	}
 
 	@Override
@@ -38,19 +57,20 @@ public class TestHttpServletRequestImpl implements HttpServletRequest
 	@Override
 	public String getHeader(String name)
 	{
-		return null;
+		ArrayList<String> values = headers.get(name);
+		return values.stream().findFirst().orElse(null);
 	}
 
 	@Override
 	public Enumeration getHeaders(String name)
 	{
-		return null;
+		return Collections.enumeration(headers.get(name));
 	}
 
 	@Override
 	public Enumeration getHeaderNames()
 	{
-		return null;
+		return Collections.enumeration(headers.keySet());
 	}
 
 	@Override
@@ -134,13 +154,17 @@ public class TestHttpServletRequestImpl implements HttpServletRequest
 	@Override
 	public HttpSession getSession(boolean create)
 	{
-		return null;
+		if (create && httpSession == null) {
+			httpSession = new TestHttpSessionImpl();
+		}
+
+		return httpSession;
 	}
 
 	@Override
 	public HttpSession getSession()
 	{
-		return null;
+		return getSession(true);
 	}
 
 	@Override
@@ -242,13 +266,18 @@ public class TestHttpServletRequestImpl implements HttpServletRequest
 	@Override
 	public String getParameter(String name)
 	{
-		return null;
+
+		ArrayList<String> values = params.get(name);
+		return values == null ? null : values.stream().findFirst().orElse(null);
+
+		// this makes the request go further? wtf?!
+		// return Arrays.stream(values).findFirst().orElse(null);
 	}
 
 	@Override
-	public Enumeration getParameterNames()
+	public Enumeration<String> getParameterNames()
 	{
-		return null;
+		return Collections.enumeration(params.keySet());
 	}
 
 	@Override
@@ -258,9 +287,15 @@ public class TestHttpServletRequestImpl implements HttpServletRequest
 	}
 
 	@Override
-	public Map getParameterMap()
+	public Map<String, String[]> getParameterMap()
 	{
-		return null;
+		Map<String, String[]> result = new HashMap<>();
+		params.entrySet().stream().forEach(stringArrayListEntry -> {
+			String[] array = new String[stringArrayListEntry.getValue().size()];
+			stringArrayListEntry.getValue().toArray(array);
+			result.put(stringArrayListEntry.getKey(), array);
+		});
+		return Collections.unmodifiableMap(result);
 	}
 
 	@Override
