@@ -10,6 +10,7 @@ import java.util.*;
 public class TestPortletConfig implements PortletConfig
 {
 	private final PortletContext portletContext;
+	private final ResourceBundle resourceBundle;
 
 	public TestPortletConfig()
 	{
@@ -19,24 +20,7 @@ public class TestPortletConfig implements PortletConfig
 	public TestPortletConfig(PortletContext portletContext)
 	{
 		this.portletContext = portletContext;
-	}
-
-	@Override
-	public String getPortletName()
-	{
-		return null;
-	}
-
-	@Override
-	public PortletContext getPortletContext()
-	{
-		return portletContext;
-	}
-
-	@Override
-	public ResourceBundle getResourceBundle(Locale locale)
-	{
-		return new ResourceBundle()
+		resourceBundle = new ResourceBundle()
 		{
 			@Override
 			protected Object handleGetObject(String key)
@@ -56,6 +40,24 @@ public class TestPortletConfig implements PortletConfig
 				return Collections.emptyEnumeration();
 			}
 		};
+	}
+
+	@Override
+	public String getPortletName()
+	{
+		return null;
+	}
+
+	@Override
+	public PortletContext getPortletContext()
+	{
+		return portletContext;
+	}
+
+	@Override
+	public ResourceBundle getResourceBundle(Locale locale)
+	{
+		return resourceBundle;
 	}
 
 	@Override
