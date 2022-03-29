@@ -26,13 +26,13 @@ Use `PortalInitializer.initialize()` to start portal with all services:
 public class NewPortletTest
 {
 	private NewPortlet newPortlet; // MVCPortlet
-	private static ControllerContext ctx;
+	private static MVCPortletContext ctx;
 
 	@BeforeClass
 	public static void beforeClass() throws ReflectiveOperationException, SystemException
 	{
 		PortalInitializer.initialize();
-		ctx = new ControllerContext();
+		ctx = new MVCPortletContext();
 		ctx.initializePortletServices("guestbook-portlet");
 	}
 

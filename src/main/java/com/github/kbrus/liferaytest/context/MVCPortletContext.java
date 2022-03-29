@@ -26,14 +26,14 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Map;
 
-public class ControllerContext
+public class MVCPortletContext
 {
 	private final User user;
 	private final ThemeDisplay themeDisplay;
 	private final Layout layout;
 	private final Portlet portlet;
 
-	public ControllerContext() throws Exception
+	public MVCPortletContext() throws Exception
 	{
 		long companyId = CounterLocalServiceUtil.increment();
 		long companyGroupId = CounterLocalServiceUtil.increment();
