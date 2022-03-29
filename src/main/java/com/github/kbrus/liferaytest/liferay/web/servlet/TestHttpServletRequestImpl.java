@@ -62,13 +62,13 @@ public class TestHttpServletRequestImpl implements HttpServletRequest
 	}
 
 	@Override
-	public Enumeration getHeaders(String name)
+	public Enumeration<String> getHeaders(String name)
 	{
 		return Collections.enumeration(headers.get(name));
 	}
 
 	@Override
-	public Enumeration getHeaderNames()
+	public Enumeration<String> getHeaderNames()
 	{
 		return Collections.enumeration(headers.keySet());
 	}
@@ -228,7 +228,7 @@ public class TestHttpServletRequestImpl implements HttpServletRequest
 	}
 
 	@Override
-	public Enumeration getAttributeNames()
+	public Enumeration<String> getAttributeNames()
 	{
 		return Collections.enumeration(attrs.keySet());
 	}
@@ -359,7 +359,7 @@ public class TestHttpServletRequestImpl implements HttpServletRequest
 	}
 
 	@Override
-	public Enumeration getLocales()
+	public Enumeration<Locale> getLocales()
 	{
 		return null;
 	}
