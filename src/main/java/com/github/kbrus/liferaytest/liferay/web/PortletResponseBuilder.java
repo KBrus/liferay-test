@@ -7,33 +7,34 @@ import com.liferay.portal.theme.ThemeDisplay;
 import javax.portlet.*;
 import java.lang.reflect.Field;
 
-public abstract class PortletResponseBuilder<T extends PortletResponse>
+public abstract class PortletResponseBuilder<SELF extends PortletResponseBuilder<SELF, T>, T extends PortletResponse>
 {
 	private T portletResponse;
 
-	public static PortletResponseBuilder<ActionResponse> newActionResponse()
+	public static ActionResponseBuilder newActionResponse()
 	{
 		return new ActionResponseBuilder();
 	}
 
-	public static PortletResponseBuilder<RenderResponse> newRenderResponse()
+	public static RenderResponseBuilder newRenderResponse()
 	{
 		return new RenderResponseBuilder();
 	}
 
-	public static PortletResponseBuilder<ResourceResponse> newResourceResponse()
+	public static ResourceResponseBuilder newResourceResponse()
 	{
 		return new ResourceResponseBuilder();
 	}
 
-	public PortletResponseBuilder<T> withPortletRequest(PortletRequest req)
+	@SuppressWarnings("unchecked")
+	public SELF withPortletRequest(PortletRequest req)
 			throws ReflectiveOperationException
 	{
 		Field field = portletResponse.getClass().getSuperclass().getDeclaredField("_portletRequestImpl");
 		field.setAccessible(true);
 		field.set(portletResponse, req);
 
-		return this;
+		return (SELF) this;
 	}
 
 	public T build()
@@ -41,7 +42,7 @@ public abstract class PortletResponseBuilder<T extends PortletResponse>
 		return portletResponse;
 	}
 
-	public static class ActionResponseBuilder extends PortletResponseBuilder<ActionResponse>
+	public static class ActionResponseBuilder extends PortletResponseBuilder<ActionResponseBuilder, ActionResponse>
 	{
 		private final ActionResponse actionResponse;
 
@@ -62,7 +63,7 @@ public abstract class PortletResponseBuilder<T extends PortletResponse>
 		}
 	}
 
-	public static class RenderResponseBuilder extends PortletResponseBuilder<RenderResponse>
+	public static class RenderResponseBuilder extends PortletResponseBuilder<RenderResponseBuilder, RenderResponse>
 	{
 		private final RenderResponse renderResponse;
 
@@ -72,7 +73,7 @@ public abstract class PortletResponseBuilder<T extends PortletResponse>
 		}
 	}
 
-	public static class ResourceResponseBuilder extends PortletResponseBuilder<ResourceResponse>
+	public static class ResourceResponseBuilder extends PortletResponseBuilder<ResourceResponseBuilder, ResourceResponse>
 	{
 		private final ResourceResponse resourceResponse;
 

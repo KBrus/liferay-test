@@ -16,11 +16,11 @@ import javax.xml.namespace.QName;
 import java.lang.reflect.Field;
 import java.util.*;
 
-public abstract class PortletRequestBuilder<T extends PortletRequest>
+public abstract class PortletRequestBuilder<SELF extends PortletRequestBuilder<SELF, T>, T extends PortletRequest>
 {
 	private T portletRequest;
 
-	public static PortletRequestBuilder<ActionRequest> newActionRequest()
+	public static ActionRequestBuilder newActionRequest()
 	{
 		return new ActionRequestBuilder();
 	}
@@ -35,14 +35,16 @@ public abstract class PortletRequestBuilder<T extends PortletRequest>
 		return new ResourceRequestBuilder();
 	}
 
-	public PortletRequestBuilder<T> withUser(User user)
+	@SuppressWarnings("unchecked")
+	public SELF withUser(User user)
 	{
 		portletRequest.setAttribute(WebKeys.USER, user);
 		portletRequest.setAttribute(WebKeys.COMPANY_ID, user.getCompanyId());
-		return this;
+		return (SELF) this;
 	}
 
-	public PortletRequestBuilder<T> withPortlet(Portlet portlet)
+	@SuppressWarnings("unchecked")
+	public SELF withPortlet(Portlet portlet)
 	{
 		portletRequest.setAttribute(WebKeys.PORTLET_ID, portlet.getPortletId());
 
@@ -155,22 +157,25 @@ public abstract class PortletRequestBuilder<T extends PortletRequest>
 			}
 		});
 
-		return this;
+		return (SELF) this;
 	}
 
-	public PortletRequestBuilder<T> withLayout(Layout layout)
+	@SuppressWarnings("unchecked")
+	public SELF withLayout(Layout layout)
 	{
 		portletRequest.setAttribute(WebKeys.LAYOUT, layout);
-		return this;
+		return (SELF) this;
 	}
 
-	public PortletRequestBuilder<T> withThemeDisplay(ThemeDisplay themeDisplay)
+	@SuppressWarnings("unchecked")
+	public SELF withThemeDisplay(ThemeDisplay themeDisplay)
 	{
 		portletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
-		return this;
+		return (SELF) this;
 	}
 
-	public PortletRequestBuilder<T> withParameters(Map<String, Collection<String>> parameters)
+	@SuppressWarnings("unchecked")
+	public SELF withParameters(Map<String, Collection<String>> parameters)
 	{
 		try
 		{
@@ -180,7 +185,7 @@ public abstract class PortletRequestBuilder<T extends PortletRequest>
 
 			parameters.forEach((key, value) -> value
 					.forEach(s -> innerReq.setParameter(key, s)));
-			return this;
+			return (SELF) this;
 		}
 		catch (ReflectiveOperationException e)
 		{
@@ -193,7 +198,7 @@ public abstract class PortletRequestBuilder<T extends PortletRequest>
 		return portletRequest;
 	}
 
-	public static class ActionRequestBuilder extends PortletRequestBuilder<ActionRequest>
+	public static class ActionRequestBuilder extends PortletRequestBuilder<ActionRequestBuilder, ActionRequest>
 	{
 		private final ActionRequest actionRequest;
 
@@ -203,7 +208,7 @@ public abstract class PortletRequestBuilder<T extends PortletRequest>
 		}
 	}
 
-	public static class RenderRequestBuilder extends PortletRequestBuilder<RenderRequest>
+	public static class RenderRequestBuilder extends PortletRequestBuilder<RenderRequestBuilder, RenderRequest>
 	{
 		private final TestRenderRequestImpl renderRequest;
 
@@ -232,7 +237,7 @@ public abstract class PortletRequestBuilder<T extends PortletRequest>
 		}
 	}
 
-	public static class ResourceRequestBuilder extends PortletRequestBuilder<ResourceRequest>
+	public static class ResourceRequestBuilder extends PortletRequestBuilder<ResourceRequestBuilder, ResourceRequest>
 	{
 		private final ResourceRequest resourceRequest;
 
