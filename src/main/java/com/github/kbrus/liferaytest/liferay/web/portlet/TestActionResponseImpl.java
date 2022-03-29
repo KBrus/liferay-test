@@ -1,6 +1,5 @@
 package com.github.kbrus.liferaytest.liferay.web.portlet;
 
-import com.github.kbrus.liferaytest.liferay.web.servlet.TestHttpServletRequestImpl;
 import com.github.kbrus.liferaytest.liferay.web.servlet.TestHttpServletResponseImpl;
 import com.liferay.portlet.ActionResponseImpl;
 

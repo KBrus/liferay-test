@@ -1,7 +1,5 @@
 package com.github.kbrus.liferaytest.liferay.web.servlet;
 
-import com.liferay.portal.kernel.util.StringPool;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;

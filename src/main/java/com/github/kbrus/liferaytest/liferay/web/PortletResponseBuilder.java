@@ -2,7 +2,6 @@ package com.github.kbrus.liferaytest.liferay.web;
 
 import com.github.kbrus.liferaytest.liferay.web.portlet.TestActionResponseImpl;
 import com.github.kbrus.liferaytest.liferay.web.portlet.TestRenderResponseImpl;
-import com.liferay.portal.theme.ThemeDisplay;
 
 import javax.portlet.*;
 import java.lang.reflect.Field;
