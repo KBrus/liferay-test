@@ -16,7 +16,7 @@ Best bet is to:
 * including `ext-spring.xml` might cause an exception.
 
 In your `@BeforeClass` method do `ctx.initializePortletServices("guestbook-portlet");`. This creates a spring context
-for the portlet and caches the `PortalBeanLocator` instance.
+for the portlet and caches the `PortletBeanLocator` instance.
 
 ## Usage
 
@@ -51,13 +51,11 @@ public class NewPortletTest
 	@Test
 	public void renderTest() throws PortletException, IOException, ReflectiveOperationException
 	{
-
-		ThemeDisplay themeDisplay = ThemeDisplayFactory.create();
 		RenderRequest req = PortletRequestBuilder.newRenderRequest()
 				.withWindowState(WindowState.NORMAL)
 				.withPortletMode(PortletMode.VIEW)
 				.withPortlet(ctx.getPortlet())
-				.withThemeDisplay(themeDisplay)
+				.withThemeDisplay(ctx.getThemeDisplay())
 				.build();
 		RenderResponse resp = PortletResponseBuilder.newRenderResponse()
 				.withPortletRequest(req)
