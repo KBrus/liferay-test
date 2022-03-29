@@ -22,7 +22,7 @@ public class ParametersBuilder
 
 	public ParametersBuilder namespaced(String namespace)
 	{
-		namespace = namespace;
+		this.namespace = namespace;
 		return this;
 	}
 
