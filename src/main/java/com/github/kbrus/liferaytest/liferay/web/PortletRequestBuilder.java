@@ -3,18 +3,18 @@ package com.github.kbrus.liferaytest.liferay.web;
 import com.github.kbrus.liferaytest.liferay.web.portlet.TestActionRequestImpl;
 import com.github.kbrus.liferaytest.liferay.web.portlet.TestRenderRequestImpl;
 import com.github.kbrus.liferaytest.liferay.web.servlet.TestHttpServletRequestImpl;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.WebKeys;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.*;
-import javax.xml.namespace.QName;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Collection;
+import java.util.Map;
 
 public abstract class PortletRequestBuilder<SELF extends PortletRequestBuilder<SELF, T>, T extends PortletRequest>
 {
@@ -44,118 +44,10 @@ public abstract class PortletRequestBuilder<SELF extends PortletRequestBuilder<S
 	}
 
 	@SuppressWarnings("unchecked")
-	public SELF withPortlet(Portlet portlet)
+	public SELF withPortlet(MVCPortlet mvcPortlet, Portlet portletModel)
 	{
-		portletRequest.setAttribute(WebKeys.PORTLET_ID, portlet.getPortletId());
-
-		// TODO: Use PortletConfigImpl. PortletContext is required, pass it via param?
-		portletRequest.setAttribute(JavaConstants.JAVAX_PORTLET_CONFIG, new LiferayPortletConfig()
-		{
-			@Override
-			public Enumeration<Locale> getSupportedLocales()
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public ResourceBundle getResourceBundle(Locale locale)
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public Enumeration<QName> getPublishingEventQNames()
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public Enumeration<String> getPublicRenderParameterNames()
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public Enumeration<QName> getProcessingEventQNames()
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public String getPortletName()
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public Enumeration<String> getInitParameterNames()
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public String getInitParameter(String name)
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public String getDefaultNamespace()
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public Map<String, String[]> getContainerRuntimeOptions()
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public boolean isWARFile()
-			{
-				// TODO Auto-generated method stub
-				return false;
-			}
-
-			@Override
-			public boolean isCopyRequestParameters()
-			{
-				// TODO Auto-generated method stub
-				return false;
-			}
-
-			@Override
-			public String getPortletId()
-			{
-				// TODO Auto-generated method stub
-				return portlet.getPortletId();
-			}
-
-			@Override
-			public PortletContext getPortletContext()
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			@Override
-			public Portlet getPortlet()
-			{
-				// TODO Auto-generated method stub
-				return null;
-			}
-		});
+		portletRequest.setAttribute(WebKeys.PORTLET_ID, portletModel.getPortletId());
+		portletRequest.setAttribute(JavaConstants.JAVAX_PORTLET_CONFIG, mvcPortlet.getPortletConfig());
 
 		return (SELF) this;
 	}
