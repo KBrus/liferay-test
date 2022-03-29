@@ -1,6 +1,6 @@
-package com.github.kbrus.liferaytest.liferay.web.portlet;
+package com.github.kbrus.liferaytest.liferay.web;
 
-import com.github.kbrus.liferaytest.liferay.web.servlet.TestHttpServletResponseImpl;
+import com.github.kbrus.liferaytest.web.servlet.TestHttpServletResponseImpl;
 import com.liferay.portlet.ActionResponseImpl;
 
 import java.lang.reflect.Field;

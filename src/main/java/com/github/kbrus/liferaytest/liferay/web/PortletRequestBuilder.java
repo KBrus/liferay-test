@@ -1,8 +1,6 @@
 package com.github.kbrus.liferaytest.liferay.web;
 
-import com.github.kbrus.liferaytest.liferay.web.portlet.TestActionRequestImpl;
-import com.github.kbrus.liferaytest.liferay.web.portlet.TestRenderRequestImpl;
-import com.github.kbrus.liferaytest.liferay.web.servlet.TestHttpServletRequestImpl;
+import com.github.kbrus.liferaytest.web.servlet.TestHttpServletRequestImpl;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.Portlet;

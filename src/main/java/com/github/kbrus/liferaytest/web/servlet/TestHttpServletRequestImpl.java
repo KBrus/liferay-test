@@ -1,4 +1,4 @@
-package com.github.kbrus.liferaytest.liferay.web.servlet;
+package com.github.kbrus.liferaytest.web.servlet;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
