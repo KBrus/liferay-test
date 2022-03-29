@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class PortalBeanLocator implements BeanLocator
 {
-	private PortalApplicationContext applicationContext;
+	private final PortalApplicationContext applicationContext;
 
 	public PortalBeanLocator()
 	{

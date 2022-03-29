@@ -12,7 +12,7 @@ public class TestConfigurationImpl implements Configuration
 {
 	private final static String CONFIG_FILE_NAME = "portlet-test.properties";
 
-	private Properties props;
+	private final Properties props;
 
 	public TestConfigurationImpl() throws IOException
 	{

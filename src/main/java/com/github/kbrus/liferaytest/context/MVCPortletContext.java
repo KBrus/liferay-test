@@ -106,6 +106,7 @@ public class MVCPortletContext
 
 		Field declaredField = portletLocalServiceImpl.getClass().getDeclaredField("_portletsPool");
 		declaredField.setAccessible(true);
+		@SuppressWarnings("unchecked")
 		Map<String, Portlet> portletPool = (Map<String, Portlet>) declaredField.get(null);
 		portletPool.put(portletId, portlet);
 	}

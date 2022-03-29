@@ -7,7 +7,7 @@ import java.util.*;
 public class ParametersBuilder
 {
 	private String namespace;
-	private Map<String, Collection<String>> map;
+	private final Map<String, Collection<String>> map;
 
 	private ParametersBuilder()
 	{

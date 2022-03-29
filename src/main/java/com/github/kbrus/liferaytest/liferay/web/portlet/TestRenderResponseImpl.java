@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 
 public class TestRenderResponseImpl extends RenderResponseImpl
 {
-	private TestHttpServletResponseImpl response;
+	private final TestHttpServletResponseImpl response;
 
 	public TestRenderResponseImpl()
 	{

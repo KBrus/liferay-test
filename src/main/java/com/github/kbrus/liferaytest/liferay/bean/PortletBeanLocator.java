@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class PortletBeanLocator implements BeanLocator
 {
-	ClassPathXmlApplicationContext applicationContext;
+	final ClassPathXmlApplicationContext applicationContext;
 
 	public PortletBeanLocator()
 	{
